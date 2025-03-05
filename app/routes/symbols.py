@@ -24,7 +24,7 @@ async def upload_symbol(description: str = Form(...), file: UploadFile = File(..
         with open(file_location, "wb") as f:
             shutil.copyfileobj(file.file, f)
         
-        image_url = f"http://192.168.1.52:8000/uploads/{filename}"
+        image_url = f"https://caaapp.onrender.com/uploads/{filename}"
         
         # Inserir no banco de dados
         db = get_db_connection()
@@ -51,7 +51,7 @@ def get_symbols():
         # Garantir que as URLs estejam corretas
         for symbol in symbols:
             if symbol['image_url']:
-                symbol['image_url'] = f"http://192.168.1.52:8000/uploads/{symbol['image_url'].split('/')[-1]}"
+                symbol['image_url'] = f"https://caaapp.onrender.com/uploads/{symbol['image_url'].split('/')[-1]}"
             else:
                 symbol['image_url'] = None  # Caso a URL seja nula
 
